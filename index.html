@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Interactive rating component</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;500;600&display=swap");
+
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      :root {
+        --Orange: hsl(25, 97%, 53%);
+        --White: hsl(0, 0%, 100%);
+        --LightGrey: hsl(217, 12%, 63%);
+        --MediumGrey: hsl(216, 12%, 54%);
+        --DarkBlue: hsl(213, 19%, 18%);
+        --VeryDarkBlue: hsl(216, 12%, 8%);
+      }
+
+      body {
+        font-family: "Overpass", sans-serif;
+        background-color: var(--VeryDarkBlue);
+      }
+
+      .main {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--VeryDarkBlue);
+      }
+
+      .container {
+        background-image: linear-gradient(180deg, #212a33, #191e25);
+        width: 400px;
+        height: 390px;
+        border-radius: 30px;
+      }
+      @media screen and (max-width: 600px) {
+        .container {
+          transform: scale(0.9);
+        }
+      }
+
+      .content {
+        width: 80%;
+        height: 100%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+      }
+
+      .star {
+        background-color: var(--DarkBlue);
+        padding: 14px;
+        margin-top: 25px;
+        border-radius: 50%;
+      }
+
+      .text {
+        color: var(--White);
+      }
+
+      .text h2 {
+        font-size: 30px;
+      }
+
+      .text p {
+        font-size: 15px;
+        font-weight: 200;
+        color: var(--LightGrey);
+        line-height: 25px;
+      }
+
+      .rating {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+
+      .rating span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--DarkBlue);
+        color: var(--LightGrey);
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        transition: 0.2s;
+        cursor: pointer;
+      }
+
+      .rating .selected {
+        background-color: var(--MediumGrey);
+        color: var(--White);
+      }
+
+      .rating span:hover {
+        background-color: var(--Orange);
+        color: var(--White);
+      }
+
+      button {
+        background-color: var(--Orange);
+        border: none;
+        outline: none;
+        color: var(--White);
+        padding: 15px 0;
+        border-radius: 25px;
+        margin: 20px 0;
+        cursor: pointer;
+        transition: 0.2s;
+        text-transform: uppercase;
+        font-family: "Overpass", sans-serif;
+        letter-spacing: 4px;
+      }
+
+      button:hover {
+        background-color: var(--White);
+        color: var(--Orange);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="container">
+        <div class="content">
+          <svg
+            class="star"
+            width="17"
+            height="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m9.067.43 1.99 4.031c.112.228.33.386.58.422l4.45.647a.772.772 0 0 1 .427 1.316l-3.22 3.138a.773.773 0 0 0-.222.683l.76 4.431a.772.772 0 0 1-1.12.813l-3.98-2.092a.773.773 0 0 0-.718 0l-3.98 2.092a.772.772 0 0 1-1.119-.813l.76-4.431a.77.77 0 0 0-.222-.683L.233 6.846A.772.772 0 0 1 .661 5.53l4.449-.647a.772.772 0 0 0 .58-.422L7.68.43a.774.774 0 0 1 1.387 0Z"
+              fill="#FC7614"
+            />
+          </svg>
+
+          <div class="text">
+            <h2>How did we do?</h2>
+            <p>
+              Please let us know how we did with your support request. All
+              feedback is appreciated to help us improve our offering!
+            </p>
+          </div>
+
+          <div class="rating">
+            <span class="rate" data-rating="1">1</span>
+            <span class="rate" data-rating="2">2</span>
+            <span class="rate" data-rating="3">3</span>
+            <span class="rate" data-rating="4">4</span>
+            <span class="rate" data-rating="5">5</span>
+          </div>
+
+          <button onclick="location.href='./thankyou-desk.html'">submit</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const rates = document.querySelectorAll(".rate");
+
+      for (const rate of rates) {
+        rate.addEventListener("click", function () {
+          const rating = this.dataset.rating;
+          setSelectedNumber(rating);
+        });
+      }
+
+      function setSelectedNumber(rating) {
+        for (const rate of rates) {
+          if (rate.dataset.rating === rating) {
+            rate.classList.add("selected");
+          } else {
+            rate.classList.remove("selected");
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
